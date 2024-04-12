@@ -1,0 +1,93 @@
+/* Color palette:
+Gray            rgb(185,195,186);
+Light Green     rgb(143,194, 93);
+Dark Green      rgb(77,149, 83);
+Dark Gray       rgb(48, 68, 77); */
+
+*{    
+    font-family:'Courier New', Courier, monospace;
+}
+
+body{
+    background-color: rgb(238, 252, 239);
+}
+
+#main{
+    margin: 100px;
+}
+#calc-body{
+    width: 360px;
+    height: 595px;
+    background-color: rgb(185,195,186);
+    margin: auto;
+    border-radius: 20px;
+
+
+}
+
+#top{
+    display: flex;
+    align-items:center;
+    height: 150px;
+}
+
+#view{
+    background-color: rgb(48, 68, 77);
+    color:rgb(238, 252, 239);
+    height: 100px;
+    line-height: 100px;
+    width: 90%;
+    border-radius: 20px;
+    margin: auto;
+    font-size: 65px;
+    text-align:right;
+
+} 
+#output{
+    padding: 5px 5px 0px 5px;
+}
+
+#btn-area{
+    display: flex;
+    flex-wrap: wrap;
+    height: 380px;
+    margin: 20px;
+    background-color: rgb(48, 68, 77);
+    border-radius: 20px;
+    padding: 15px 15px 10px 15px;
+    gap: 10px;
+
+}
+
+
+button {
+    font-weight: bold;
+    height: 65px;
+    width: 65px;
+    border-radius: 10px;
+    border: none;
+    font-size: 30px;
+    background-color: rgb(238, 252, 239);
+}
+
+.operator, .equals{
+    background-color: rgb(77,149, 83);
+    color: white;
+}
+
+.other{
+    background-color: rgb(143,194, 93);
+
+}
+
+.operator:hover, .equals:hover{
+    background-color:rgb(54, 104, 58);
+}
+
+.other:hover{
+    background-color: rgb(107, 145, 70);
+}
+
+.num-btn:hover{
+    background-color: rgb(185,195,186);
+}
