@@ -10,13 +10,13 @@ Dark Gray       rgb(48, 68, 77); */
 
 body{
     background-color: rgb(238, 252, 239);
+    margin: 100px 0px;
     
 }
 
-#main{
-    margin: 100px;
-}
+
 #calc-body{
+    
     width: 360px;
     height: 595px;
     background-color: rgb(185,195,186);
@@ -60,12 +60,13 @@ body{
     border-radius: 20px;
     padding: 15px 15px 10px 15px;
     gap: 10px;
-    box-shadow: 5px 5px 3px 3px rgb(21, 29, 32) inset;
+    
 
 }
 
 
 button {
+    color: rgb(21, 29, 32);
     font-weight: bold;
     height: 65px;
     width: 65px;
@@ -74,6 +75,7 @@ button {
     font-size: 30px;
     background-color: rgb(238, 252, 239);
     box-shadow: 6px 6px 4px rgb(21, 29, 32);
+    margin: auto;
 }
 
 .operator, .equals{
