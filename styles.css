@@ -75,7 +75,7 @@ button {
     font-size: 30px;
     background-color: rgb(238, 252, 239);
     box-shadow: 6px 6px 4px rgb(21, 29, 32);
-    margin: auto;
+    text-align: center;
 }
 
 .operator, .equals{
