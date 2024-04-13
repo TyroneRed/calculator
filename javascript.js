@@ -1,15 +1,16 @@
 let str2 = '0';
 let str1 = '';
 let operator = '';
-otherButtonClicked = 'false';
+let otherButtonClicked = 'false';
 
 const numberButtons = document.querySelectorAll('.num-btn');
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener("click",function getInput(){
+        console.log(otherButtonClicked);
         if (str2 === '0'){
             str2 = ''
-        }
-        additionalCharacter = numberButton.textContent
+        }    
+        additionalCharacter = numberButton.textContent    
         if (additionalCharacter === '.'){
             if (str2.includes('.')){
                 additionalCharacter = '';
@@ -17,11 +18,11 @@ numberButtons.forEach((numberButton) => {
             if (str2 == ''){
                 additionalCharacter = '0.'
             }
+        }    
         if ((additionalCharacter === '0' && str2 == '') || (otherButtonClicked === 'true')){
-            additionalCharacter = '';
+            additionalCharacter = ''; 
         }
-        
-        }
+    
         if (str2.length < 8){
         str2 += additionalCharacter;
         displayOutput(str2);  
@@ -100,7 +101,7 @@ function operate(){
             result = num1 / num2;
             break;
     };
-    
+
     displayOutput(String(result));
     str1 = String(result);
     str2 = '';//prevents operating again 
@@ -109,70 +110,47 @@ function operate(){
     
 };
 
-
-
-let factorialButton = document.querySelector('#factorial');
-factorialButton.addEventListener("click", function factorial() {
-    otherButtonClicked = 'true';
-    if (str2 === ''){
-        str2 = str1;
-
-    }
-    if (str2){
+let otherButtons = document.querySelectorAll(".other");
+otherButtons.forEach((otherButton) => {
+    otherButton.addEventListener("click", function handleOtherButtons() {
+        
         
         let result = 1;
-        
-        num2 = Number(str2);
-        if (num2 === 0){
-            result = 1
-        }    
-        else if ((num2 - Math. floor(num2)) !== 0 || (num2 < 0)){
-            result = 'ERROR';
-            num2 = 0;
-        }else{
-            for(let i = num2; i > 1; i--)
-            result *= i;
+        if (str2 === ''){
+            str2 = str1;
         }
-   
-        displayOutput(String(result));
-        str2 = String(result);
-        // str1 = str2;
-        // // str2 = '';
- 
-}
-});
+        if (str2){
+        switch (otherButton.id){
+            
+            case 'factorial': 
+                num2 = Number(str2);
+                if (num2 === 0){
+                    result = 1
+                }    
+                else if ((num2 - Math. floor(num2)) !== 0 || (num2 < 0)){
+                    result = 'ERROR';
+                    num2 = 0;
+                }else{
+                    for(let i = num2; i > 1; i--)
+                    result *= i;
+                }
+                break;
 
-let percentButton = document.querySelector('#percent')
-percentButton.addEventListener("click", function percent() {
-    otherButtonClicked = 'true';
-    if (str2 === ''){
-        str2 = str1;
+            case 'percent':
+                result = Number(str2)/100;
+                break;
+
+            case 'plus-minus':
+                result = -1*Number(str2);
+                break;
+            }  
+            
+      
+        displayOutput(String(result)); 
+        str2 = String(result);  
+        otherButtonClicked = 'true';      
     };
-    if (str2){
-    num2 = Number(str2)/100;
-    str2 = String(num2);
-    displayOutput(str2)
-    // str1 = str2;
-    // str2 = ''
-    };
+    });   
     
-});
-
-
-let plusMinusButton = document.querySelector('#plus-minus')
-plusMinusButton.addEventListener("click", function negative() {
-    otherButtonClicked = 'true';
-    if (str2 === ''){
-        str2 = str1;
-    };
-    if (str2){
-    num2 = -1*Number(str2);
-    str2 = String(num2);
-    displayOutput(str2);
-    // str1 = str2;
-    // str2 = ''
-    }
-});
-
-
-
+});        
+        
