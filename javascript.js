@@ -3,19 +3,82 @@ let str1 = '';
 let operator = '';
 let otherButtonClicked = 'false';
 
+
+const body = document.querySelector('body');
+body.addEventListener("keydown", getKeyInput);
+//Handle button input
+
+function getKeyInput(event) {
+    const possibleNumbers = '1234567890.';
+    const operators = ['+', '-', '/', '*', '=', 'Enter'];
+
+ 
+    key = event.key;
+  
+
+    // Create and display output when number or decimal entered on keyboard
+    if (possibleNumbers.includes(key)){
+        str2 = createOutput(key);
+        displayOutput(str2);
+
+    // Handle calculations and output when + - / * or = pressed on keyboard       
+    }else if (operators.includes(key)){
+        otherButtonClicked = 'false';
+        result = operate(operator);
+        if (result !== ''){
+        displayOutput(String(result));
+        } 
+        operator = key;
+        if (str2 !== ''){
+        str1 = str2;
+        str2 = '';
+        } 
+
+    // Handle calculations and output when ! % or +/- pressed   
+    }else if (key === '%' || key === '!'){
+        result = handleOtherButton(key, key);
+        displayOutput(String(result));
+     
+    // Handle ouput when backspace is pressed    
+    }else if (key === 'Backspace'){
+    str2 = str2.slice(0,-1);
+    console.log(`str1: ${str1}, str2: ${str2} button: $"{button.id}`);
+    if (str2 === ''){
+        displayOutput(str1);
+        }else{
+    displayOutput(str2);
+        };    
+    
+    
+    // Clear screen when CE button pressed
+    }else if (key === 'Delete'){
+        clearDisplay();
+    }
+};
+
 //Listen for input at each of the buttons
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    button.addEventListener("click", getInput);
+    button.addEventListener("mousedown", getInput);
 })
- 
+
 //Handle button input
 function getInput(event) {
     button = event.target;
-
+ 
     // Create and display output when number button pressed
-    if (button.className === 'num-btn'){
-        str2 = createOutput(button.textContent);
+    if (button === 'backspace'){
+        str2 = str2.slice(0,-1);
+        console.log(`str1: ${str1}, str2: ${str2} button: $"{button.id}`);
+        if (str2 == ''){
+            displayOutput(str1);
+        }else{
+        displayOutput(str2);
+        };    
+        
+    }else if (button.className === 'num-btn'){
+        str2 = createOutput(button.textContent, button.id);
+   
         displayOutput(str2);
 
     // Handle calculations and output when + - / * or = pressed        
@@ -39,13 +102,16 @@ function getInput(event) {
 
     // Clear screen when CE button pressed
     else if (button.className === 'clear'){
+    
+        displayOutput(str2);
         clearDisplay();
+        
     }
 };
 
 // Add characters to string when numbers or . pressed
 
-function createOutput(character){
+function createOutput(character, id){
     //Don't add extra zeros at the front
     if (str2 === '0'){
         str2 = ''
@@ -61,15 +127,30 @@ function createOutput(character){
             character = '0.';
         }
     }    
-    // Don't add extra zeros, don't allow the addition of characters after !, % or +/- pressed
+    // Don't add extra zeros at the front, don't allow the addition of characters after !, % or +/- pressed
     if ((character === '0' && str2 == '') || (otherButtonClicked === 'true')){
         character = ''; 
     }
+    if (id === 'backspace'){
+        str2 = str2.slice(0, -1);
+        if (str2 === ''){
+            displayOutput(str1);
+        }else{
+        displayOutput(str2);
+        };    
+   
+        console.log(`str1: ${str1}, str2: ${str2} button: $"{button.id}`);
 
+
+        }
+        
+        
     // Limit string length for display purposes
     if (str2.length < 8){
     str2 += character;
     }
+
+    
     return str2;
 };
     
@@ -84,6 +165,7 @@ function handleOtherButton(otherButton){
         switch (otherButton){
             
             case 'factorial': 
+            case '!':
                 num2 = Number(str2);
                 if (num2 === 0){
                     result = 1
@@ -98,6 +180,7 @@ function handleOtherButton(otherButton){
                 break;
 
             case 'percent':
+            case '%':    
                 result = Number(str2)/100;
                 break;
 
@@ -144,12 +227,13 @@ function clearDisplay(){
     operator = '';
     displayOutput(str2);
     otherButtonClicked = 'false';
+
 };
 
 
 
 // Calculate and Display results
-function operate(){
+function operate(operator){
     num1 = Number(str1);
     num2 = Number(str2);
     otherButtonClicked = 'false';
@@ -158,21 +242,27 @@ function operate(){
         
         switch(operator){
             case 'plus':
+            case '+':
                 result = num1 + num2;
                 break;
             case 'minus':
+            case '-':
                 result = num1 - num2;
                 break;
             case 'times':
+            case '*':
                 result = num1 * num2;
                 break;
             case 'divide':
+            case '/':
                 result = num1 / num2;
                 break;
         };
+        if (operator !== 'Enter' && operator !== 'equals' && operator !== '='){
         str1 = String(result);
         str2 = '';//prevents operating again 
-        operator = '';
+        operator = '';}
+  
     }
 
 return result;    

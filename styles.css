@@ -85,7 +85,7 @@ button {
     color: white;
 }
 
-.clear, .other{
+#backspace, .clear, .other{
     background-color: rgb(143,194, 93);
 
 }
@@ -94,7 +94,7 @@ button {
     background-color:rgb(54, 104, 58);
 }
 
-.other:hover{
+#backspace:hover, .clear:hover, .other:hover{
     background-color: rgb(107, 145, 70);
 }
 
