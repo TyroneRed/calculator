@@ -74,12 +74,15 @@ button {
     width: 65px;
     border-radius: 10px;
     border: none;
-    font-size: 30px;
+    font-size: 35px;
     background-color: rgb(238, 252, 239);
     box-shadow: 6px 6px 4px rgb(21, 29, 32);
     /* text-align: center; */
 }
 
+i {
+    font-size: 29px;
+}
 .operator, .equals{
     background-color: rgb(77,149, 83);
     color: white;
