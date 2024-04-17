@@ -59,12 +59,12 @@ function getKeyInput(event) {
 //Listen for input at each of the buttons
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-    button.addEventListener("mousedown", getInput);
+    button.addEventListener("mousedown", getInput, true);
 })
 
 //Handle button input
 function getInput(event) {
-    button = event.target;
+    button = event.currentTarget;
  
     // Create and display output when number button pressed
     if (button === 'backspace'){
@@ -89,6 +89,7 @@ function getInput(event) {
         if (result !== ''){
         displayOutput(String(result));
         } 
+        console.log(str1, str2, operator)
         operator = button.id;
         if (str2 !== ''){
         str1 = str2;
