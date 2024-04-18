@@ -53,6 +53,7 @@ body{
 }
 
 #btn-area{
+    box-shadow: 5px 5px 3px 3px rgb(21, 29, 32) inset;
     display: flex;
     flex-wrap: wrap;
     height: 380px;
